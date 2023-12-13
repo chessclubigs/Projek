@@ -1,0 +1,8 @@
+notes.txt
+.env
+env/
+instance/
+migrations/
+
+.DS_Store
+__pycache__/
