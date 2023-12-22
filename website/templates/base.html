@@ -3,12 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}"> -->
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.jpg') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    {% if title %}
+        <title>{{ title }} - Chess Club IGS</title>
+    {% else %}
+        <title>Chess Club IGS</title>
+    {% endif %}
 </head>
 <body>
-    Hello from Flask!
+    <div class="alert-box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    {% include "components/header.html" %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <hr>
+    {% include "components/footer.html" %}
 </body>
 </html>

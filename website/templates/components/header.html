@@ -1,9 +1,13 @@
 <header>
-    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
-    <ul class="nav">
-        <li><a href="{{ url_for('views.index') }}">Home</a></li>
-        <li><a href="{{ url_for('views.leaderboard') }}">Leaderboard</a></li>
-        <li><a href="{{ url_for('views.tournaments') }}">Tournaments</a></li>
-        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-    </ul>
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="logo">
+    </div>
+    <div class="menu-list-container">
+        <ul class="menu-list">
+            <li><a href="{{ url_for('views.index') }}">Home</a></li>
+            <li><a href="{{ url_for('views.leaderboard') }}">Leaderboard</a></li>
+            <li><a href="{{ url_for('views.tournaments') }}">Tournaments</a></li>
+            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+        </ul>
+    </div>
 </header>
