@@ -1,9 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    index
+    <section class="content">
+        Welcome to Chess
 
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum fugiat ipsum rerum et, unde ducimus dolor nemo non doloremque accusantium, incidunt nam? Harum debitis unde beatae, cumque saepe molestias dolorem.</p>
+    </section>
     <aside>
-
+        <div class="small-leaderboard-container side-card">
+            <h3>Top Rated</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Albert Valentino</td>
+                        <td>1300</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Vehan</td>
+                        <td>1250</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Louis Fernando Karim</td>
+                        <td>600</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="user-lookup side-card">
+            <h3>User Lookup</h3>
+            <br>
+            <input type="text">
+        </div>
     </aside>
 {% endblock content %}

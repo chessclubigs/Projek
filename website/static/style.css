@@ -14,8 +14,8 @@ html {
 }
 
 body {
-	height: 100%;
 	padding-inline: 20px;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 }
@@ -28,10 +28,10 @@ header {
 }
 
 header .logo-container {
+	margin-left: 30px;
 	width: 80px;
 	border-radius: 40px;
-	border: 1px grey solid;
-	margin-left: 30px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
 header .logo-container img {
@@ -41,15 +41,15 @@ header .logo-container img {
 
 header .menu-list-container {
 	padding: 5px 20px;
-	border: 1px black solid;
 	border-radius: 8px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
 header .menu-list {
-	display: flex;
-	gap: 50px;
 	font-size: 16pt;
 	font-weight: bold;
+	display: flex;
+	gap: 50px;
 }
 
 header .menu-list li {
@@ -69,5 +69,38 @@ footer {
 }
 
 main {
+	display: flex;
 	flex: 1;
+}
+
+main section {
+	width: 75%;
+}
+
+main aside {
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.side-card {
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+table {
+	margin-inline: auto;
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+th {
+	min-width: 30px;
+}
+
+table, th, td {
+	border: 1px solid gainsboro;
 }

@@ -1,6 +1,9 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 
-views = Blueprint('views', __name__)
+from website.models import User
+
+views = Blueprint("views", __name__)
 
 @views.route("/")
 def index():
@@ -13,3 +16,9 @@ def leaderboard():
 @views.route("/tournaments")
 def tournaments():
     return render_template("tournaments.html", title="Tournaments")
+
+@views.route("/<string:user_id>")
+@login_required
+def profile(user_id):
+    user = User.query.get(user_id)
+    return render_template("profile.html", title=f"Profile - {user.fullname}", user=user)
