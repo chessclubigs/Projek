@@ -29,14 +29,14 @@ header {
 
 header .logo-container {
 	margin-left: 30px;
-	width: 80px;
-	border-radius: 40px;
+	width: 70px;
+	border-radius: 35px;
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
 header .logo-container img {
 	width: 100%;
-	border-radius: 40px;
+	border-radius: 35px;
 }
 
 header .menu-list-container {
@@ -69,6 +69,7 @@ footer {
 }
 
 main {
+	padding-bottom: 10px;
 	display: flex;
 	flex: 1;
 }
@@ -88,11 +89,14 @@ main aside {
 	padding: 10px;
 	border-radius: 10px;
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 table {
-	margin-inline: auto;
-	width: 100%;
+	margin-left: 10px;
+	width: calc(100% - 20px);
 	border-collapse: collapse;
 	text-align: center;
 }

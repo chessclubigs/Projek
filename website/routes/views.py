@@ -1,13 +1,14 @@
 from flask import Blueprint, render_template
 from flask_login import login_required
 
-from website.models import User
+from website.models import User, Member
 
 views = Blueprint("views", __name__)
 
 @views.route("/")
 def index():
-    return render_template("index.html")
+    members = Member.query.order_by(Member.rating.desc()).limit(10)
+    return render_template("index.html", members=members)
 
 @views.route("/leaderboard")
 def leaderboard():

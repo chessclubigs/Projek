@@ -2,13 +2,20 @@
 
 {% block content %}
     <section class="content">
-        Welcome to Chess
+        <p>Welcome to Chess</p>
 
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum fugiat ipsum rerum et, unde ducimus dolor nemo non doloremque accusantium, incidunt nam? Harum debitis unde beatae, cumque saepe molestias dolorem.</p>
     </section>
     <aside>
+        <div class="ongoing-tournament side-card">
+            <h3>Ongoing Tournament</h3>
+            <hr>
+            <p>Time Elapsed: </p>
+            <p>Jump to Tournament</p>
+        </div>
         <div class="small-leaderboard-container side-card">
             <h3>Top Rated</h3>
+            <hr>
             <table>
                 <thead>
                     <tr>
@@ -18,27 +25,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Albert Valentino</td>
-                        <td>1300</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Rafael Vehan</td>
-                        <td>1250</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Louis Fernando Karim</td>
-                        <td>600</td>
-                    </tr>
+                    {% set index = namespace(value=0) %}
+                    {% for member in members %}
+                        {% set index.value = index.value + 1 %}
+                        <tr>
+                            <td>{{ index.value }}</td>
+                            <td>{{ member.full_name }}</td>
+                            <td>{{ member.rating }}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
         <div class="user-lookup side-card">
             <h3>User Lookup</h3>
-            <br>
+            <hr>
             <input type="text">
         </div>
     </aside>
