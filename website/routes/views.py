@@ -7,7 +7,7 @@ views = Blueprint("views", __name__)
 
 @views.route("/")
 def index():
-    members = Member.query.order_by(Member.rating.desc()).limit(10)
+    members = Member.query.order_by(Member.rating.desc()).limit(5)
     return render_template("index.html", members=members)
 
 @views.route("/leaderboard")

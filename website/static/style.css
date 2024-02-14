@@ -94,6 +94,11 @@ main aside {
 	gap: 10px;
 }
 
+.jump-to-page {
+	font-size: small;
+	text-align: right;
+}
+
 table {
 	margin-left: 10px;
 	width: calc(100% - 20px);
@@ -107,4 +112,16 @@ th {
 
 table, th, td {
 	border: 1px solid gainsboro;
+}
+
+.form-container {
+	margin: auto;
+	width: 250px;
+	height: 350px;
+	border: 1px solid black;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 }

@@ -9,8 +9,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(127), unique=True, nullable=False)
     password = db.Column(db.String(63), nullable=False)
     username = db.Column(db.String(15), nullable=False)
-    is_active = db.Column(db.Boolean, default=True, nullable=False)
-    is_admin = db.Column(db.Boolean, default=False, nullable=False)
+    is_active = db.Column(db.Boolean, default=True)
+    is_admin = db.Column(db.Boolean, default=False)
     register_date = db.Column(db.DateTime, default=func.now())
 
 class Member(db.Model):
@@ -18,8 +18,8 @@ class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(63), nullable=False)
     class_name = db.Column(db.String(15), nullable=False)
-    is_active = db.Column(db.Boolean, default=True, nullable=False)
-    rating = db.Column(db.Integer, default=800, nullable=False)
+    is_active = db.Column(db.Boolean, default=True)
+    rating = db.Column(db.Integer, default=800)
     register_date = db.Column(db.DateTime, default=func.now())
 
     white_matches = db.relationship("Match", foreign_keys="Match.white_player_id", backref="white_player", lazy=True)
@@ -32,7 +32,7 @@ class Tournament(db.Model):
     title = db.Column(db.String(31), nullable=False)
     game_mode = db.Column(db.String(15), nullable=False)  # "Classical", "Rapid", "Blitz", "Bullet"
     time_control = db.Column(db.String(15), nullable=False) # e.g. "5 | 2"
-    number_of_rounds = db.Column(db.Integer, default=1, nullable=False)
+    number_of_rounds = db.Column(db.Integer, default=1)
     tournament_date = db.Column(db.DateTime, default=func.now())
     
     matches = db.relationship("Match", foreign_keys="Match.tournament_id", backref="tournament", lazy=True)
