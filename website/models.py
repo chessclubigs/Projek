@@ -26,6 +26,24 @@ class Member(db.Model):
     black_matches = db.relationship("Match", foreign_keys="Match.black_player_id", backref="black_player", lazy=True)
     tournaments = db.relationship("Tournament", secondary="participants", back_populates="participants", lazy=True)
 
+    def get_matches_won(self):
+        white_matches_won = len(list(filter(lambda x: x.winner == "White", self.white_matches)))
+        black_matches_won = len(list(filter(lambda x: x.winner == "Black", self.black_matches)))
+        total_matches_won = white_matches_won + black_matches_won
+        return total_matches_won
+    
+    def get_matches_lost(self):
+        white_matches_lost = len(list(filter(lambda x: x.winner == "Black", self.white_matches)))
+        black_matches_lost = len(list(filter(lambda x: x.winner == "White", self.black_matches)))
+        total_matches_lost = white_matches_lost + black_matches_lost
+        return total_matches_lost
+    
+    def get_matches_drawn(self):
+        white_matches_drawn = len(list(filter(lambda x: x.winner == "Draw", self.white_matches)))
+        black_matches_drawn = len(list(filter(lambda x: x.winner == "Draw", self.black_matches)))
+        total_matches_drawn = white_matches_drawn + black_matches_drawn
+        return total_matches_drawn
+
 class Tournament(db.Model):
     __tablename__ = "tournaments"
     id = db.Column(db.Integer, primary_key=True)

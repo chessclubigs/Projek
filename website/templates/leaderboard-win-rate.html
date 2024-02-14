@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="leaderboard-container">
+        <h3>Highest Win Rate</h3>
+        <div class="leaderboards-list">
+            <a href="{{ url_for('views.leaderboard_top_rated') }}">Top Rated</a>
+            <a href="{{ url_for('views.leaderboard_win_rate') }}">Highest Win Rate</a>
+            <a href="{{ url_for('views.leaderboard_tournaments_participated') }}">Most Tournaments Participated</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Win Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set index = namespace(value=0) %}
+                {% for member in members %}
+                    {% set index.value = index.value + 1 %}
+                    <tr>
+                        <td>{{ index.value }}</td>
+                        <td>{{ member.full_name }}</td>
+                        {% if member.get_matches_won() %}
+                            {% set total_matches = (member.white_matches + member.black_matches) | length %}
+                            {% set win_rate = (member.get_matches_won() / total_matches * 100) | round(2) %}
+                            <td>{{ "%0.2f" % win_rate }}% (<span style="color: chartreuse">{{ member.get_matches_won() }}</span>|<span style="color: gray">{{ member.get_matches_drawn() }}</span>|<span style="color: red">{{ member.get_matches_lost() }}</span>)</td>
+                        {% else %}
+                            <td>0.00% (<span style="color: chartreuse">{{ member.get_matches_won() }}</span>|<span style="color: gray">{{ member.get_matches_drawn() }}</span>|<span style="color: red">{{ member.get_matches_lost() }}</span>)</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

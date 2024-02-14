@@ -1,14 +1,13 @@
-<aside>
-    <div class="ongoing-tournament side-card">
-        <h3>Ongoing Tournament</h3>
-        <hr>
-        <p>Time Elapsed: </p>
-        <p>Jump to Tournament</p>
-        <a href="{{ url_for('views.tournaments') }}" class="jump-to-page">Jump to page &rightarrow;</a>
-    </div>
-    <div class="small-leaderboard-container side-card">
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="leaderboard-container">
         <h3>Top Rated</h3>
-        <hr>
+        <div class="leaderboards-list">
+            <a href="{{ url_for('views.leaderboard_top_rated') }}">Top Rated</a>
+            <a href="{{ url_for('views.leaderboard_win_rate') }}">Highest Win Rate</a>
+            <a href="{{ url_for('views.leaderboard_tournaments_participated') }}">Most Tournaments Participated</a>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -19,7 +18,7 @@
             </thead>
             <tbody>
                 {% set index = namespace(value=0) %}
-                {% for member in aside_ctx.members %}
+                {% for member in members %}
                     {% set index.value = index.value + 1 %}
                     <tr>
                         <td>{{ index.value }}</td>
@@ -29,11 +28,5 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ url_for('views.leaderboard') }}" class="jump-to-page">Jump to page &rightarrow;</a>
     </div>
-    <div class="user-lookup side-card">
-        <h3>User Lookup</h3>
-        <hr>
-        <input type="text">
-    </div>
-</aside>
+{% endblock content %}

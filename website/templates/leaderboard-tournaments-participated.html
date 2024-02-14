@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="leaderboard-container">
+        <h3>Most Tournaments Participated</h3>
+        <div class="leaderboards-list">
+            <a href="{{ url_for('views.leaderboard_top_rated') }}">Top Rated</a>
+            <a href="{{ url_for('views.leaderboard_win_rate') }}">Highest Win Rate</a>
+            <a href="{{ url_for('views.leaderboard_tournaments_participated') }}">Most Tournaments Participated</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Tournaments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set index = namespace(value=0) %}
+                {% for member in members %}
+                    {% set index.value = index.value + 1 %}
+                    <tr>
+                        <td>{{ index.value }}</td>
+                        <td>{{ member.full_name }}</td>
+                        <td>{{ member.tournaments | length }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

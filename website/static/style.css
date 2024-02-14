@@ -7,6 +7,7 @@
 	padding: 0px;
 	margin: 0px;
 	box-sizing: border-box;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 html {
@@ -69,9 +70,10 @@ footer {
 }
 
 main {
-	padding-bottom: 10px;
+	padding: 10px;
 	display: flex;
 	flex: 1;
+	gap: 50px;
 }
 
 main section {
@@ -94,24 +96,78 @@ main aside {
 	gap: 10px;
 }
 
-.jump-to-page {
+aside .jump-to-page {
 	font-size: small;
 	text-align: right;
 }
 
-table {
+aside table {
 	margin-left: 10px;
 	width: calc(100% - 20px);
 	border-collapse: collapse;
 	text-align: center;
 }
 
-th {
+aside th {
 	min-width: 30px;
 }
 
-table, th, td {
+aside :is(table, th, td) {
 	border: 1px solid gainsboro;
+}
+
+.welcome-message {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.welcome-message h1 {
+	padding: 15px 0px 10px;
+	font-size: 20pt;
+}
+
+.leaderboards-list {
+	display: flex;
+	gap: 10px;
+}
+
+.leaderboard-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.leaderboard-container table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.leaderboard-container :is(th, td) {
+	padding: 3px 5px;
+	white-space: nowrap;
+}
+
+.leaderboard-container th:nth-of-type(1) {
+	width: 40px;
+}
+
+.leaderboard-container th:nth-of-type(2) {
+	width: auto;
+	text-align: left;
+}
+
+.leaderboard-container th:nth-of-type(3) {
+	width: 0px;
+}
+
+.leaderboard-container tr td:nth-of-type(2) {
+	text-align: left;
+}
+
+.leaderboard-container :is(table, th, td) {
+	border: 2px solid gainsboro;
 }
 
 .form-container {
