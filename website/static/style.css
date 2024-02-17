@@ -170,6 +170,20 @@ aside :is(table, th, td) {
 	border: 2px solid gainsboro;
 }
 
+.pagination-container {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.pagination-container a {
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	background-color: gray;
+	text-align: center;
+}
+
 .form-container {
 	margin: auto;
 	width: 250px;
