@@ -1,8 +1,8 @@
-notes.txt
 .env
 env/
 instance/
 migrations/
+notes/
 
 .DS_Store
 __pycache__/

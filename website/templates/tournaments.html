@@ -1,5 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-    tournaments
+    <div class="tournament-container">
+        <div class="create-tournament-container">
+            <a href="{{ url_for('views.tournaments_create') }}">
+                <button class="create-tournament-button">
+                    Create Tournament +
+                </button>
+            </a>
+        </div>
+
+        <h2>Ongoing</h2>
+        <hr>
+        <p>There are currently no tournaments running!</p>
+
+        <h2>Archived</h2>
+        <hr>
+        <div class="tournament-list-container">
+            {% for tournament in tournaments %}
+                <div class="tournament_list_item">
+                    <div class="tournament_list_item_left">
+                        <h3>{{ tournament.title }}</h3>
+                        <p>Time Elapsed: {{ utils.format_time_delta_hours(utils.get_time_elapsed(tournament.tournament_date)) }}</p>
+                        <p>No. of Participants: {{ tournament.participants | length }}</p>
+                        <a href="#">View Leaderboard</a>
+                    </div>
+                    <div class="tournament_list_item_right">
+                        <div class="tournament_list_item_right_top">
+                            <span class="tournament-date-text">{{ tournament.tournament_date.strftime("%I:%M %p, %d/%m/%Y") }}</span>
+                        </div>
+                        <div class="tournament_list_item_right_bottom">
+                            <p class="matching-system-text">{{ tournament.matching_system }} <span><i class="fa-solid fa-user-group"></i></span></p>
+                            <p class="time-control-format-text">{{ utils.get_time_control_format(tournament.time_control_duration, tournament.time_control_increment) }}</p>
+                            <p class="time-control-type-text">
+                                {% with type = utils.get_time_control_type(tournament.time_control_duration) %}
+                                    {% if type == "Bullet" %}
+                                        <span><i class="fa-solid fa-meteor"></i></span>
+                                    {% elif type == "Blitz" %}
+                                        <span><i class="fas fa-bolt"></i></span>
+                                    {% elif type == "Rapid" %}
+                                        <span><i class="fa-solid fa-hourglass-half"></i></span>
+                                    {% else %}
+                                        <span><i class="fa-solid fa-clock"></i></span>
+                                    {% endif %}
+                                    {{ utils.get_time_control_type(tournament.time_control_duration) }}</p>
+                                {% endwith %}
+                            <span>{{ tournament.time_control }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}

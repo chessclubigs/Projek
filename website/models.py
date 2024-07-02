@@ -20,6 +20,7 @@ class Member(db.Model):
     class_name = db.Column(db.String(15), nullable=False)
     is_active = db.Column(db.Boolean, default=True)
     rating = db.Column(db.Integer, default=800)
+    rating_reached_date = db.Column(db.DateTime, default=func.now())
     register_date = db.Column(db.DateTime, default=func.now())
 
     white_matches = db.relationship("Match", foreign_keys="Match.white_player_id", backref="white_player", lazy=True)
@@ -48,9 +49,10 @@ class Tournament(db.Model):
     __tablename__ = "tournaments"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(31), nullable=False)
-    game_mode = db.Column(db.String(15), nullable=False)  # "Classical", "Rapid", "Blitz", "Bullet"
-    time_control = db.Column(db.String(15), nullable=False) # e.g. "5 | 2"
-    number_of_rounds = db.Column(db.Integer, default=1)
+    time_control_duration = db.Column(db.Integer, nullable=False)
+    time_control_increment = db.Column(db.Integer, nullable=False)
+    matching_system = db.Column(db.String(15), nullable=False) # "Swiss System", "Round-Robin", "Elimination", "Custom"
+    number_of_rounds = db.Column(db.Integer, nullable=False)
     tournament_date = db.Column(db.DateTime, default=func.now())
     
     matches = db.relationship("Match", foreign_keys="Match.tournament_id", backref="tournament", lazy=True)
@@ -59,8 +61,8 @@ class Tournament(db.Model):
 class Match(db.Model):
     __tablename__ = "matches"
     id = db.Column(db.Integer, primary_key=True)
-    game_mode = db.Column(db.String(15), nullable=False)  # "Classical", "Rapid", "Blitz", "Bullet"
-    time_control = db.Column(db.String(15), nullable=False) # e.g. "5 | 2"
+    time_control_duration = db.Column(db.Integer, nullable=False)
+    time_control_increment = db.Column(db.Integer, nullable=False)
     tournament_round = db.Column(db.Integer)
     winner = db.Column(db.String(7))  # "White", "Black", "Draw", Null (not determined)
     white_rating_change = db.Column(db.Integer)

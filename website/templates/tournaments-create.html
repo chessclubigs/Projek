@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="tournaments-create-container">
+        <form action="{{ url_for("views.tournaments_create") }}" method="POST">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                <label for="title">Title:</label>
+                {{ form.title(class="form-control", id="title") }}
+                {% for error in form.title.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                <span>Time Control:</span>
+                <label for="time-control-minutes"></label>
+                {{ form.time_control_minutes(class="form-control", id="time-control-minutes") }}
+                <label for="time-control-seconds"></label>
+                {{ form.time_control_seconds(class="form-control", id="time-control-seconds") }}
+                <label for="time-control-increment"></label>
+                {{ form.time_control_increment(class="form-control", id="time-control-increment") }}
+                {% for error in form.time_control_minutes.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+                {% for error in form.time_control_seconds.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+                {% for error in form.time_control_increment.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                <label for="matching-system">Matching System:</label>
+                {{ form.matching_system(class="form-control", id="matching-system") }}
+                {% for error in form.matching_system.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                <label for="number-of-rounds">Number of Rounds:</label>
+                {{ form.number_of_rounds(class="form-control", id="number-of-rounds") }}
+                {% for error in form.number_of_rounds.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="participants">Participants:</label>
+                <br>
+                {{ form.participants(class="form-control", id="participants") }}
+                {% for error in form.participants.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Create Tournament</button>
+        </form>
+    </div>
+
+    {% block scripts %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+            const participantsSelect = document.getElementById("participants");
+
+            let scrollPos = 0;
+            participantsSelect.addEventListener("mousedown", function(event) {
+                event.preventDefault();
+                
+                const targetIndex = event.target.index;
+                const isSelected = this.options[event.target.index].selected;
+                this.options[event.target.index].selected = !isSelected;
+                this.focus();
+
+                scrollPos = this.scrollTop;
+
+                setTimeout(function() {
+                    participantsSelect.scrollTop = scrollPos;
+                });
+            });
+            participantsSelect.addEventListener("keydown", (event) => event.preventDefault());
+        });
+        </script>
+    {% endblock scripts %}
+{% endblock content %}

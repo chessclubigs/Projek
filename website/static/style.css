@@ -7,7 +7,8 @@
 	padding: 0px;
 	margin: 0px;
 	box-sizing: border-box;
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+		"Lucida Sans", Arial, sans-serif;
 }
 
 html {
@@ -182,6 +183,85 @@ aside :is(table, th, td) {
 	border-radius: 15px;
 	background-color: gray;
 	text-align: center;
+}
+
+.tournament-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.create-tournament-button {
+	width: 150px;
+	height: 50px;
+	border-radius: 15px;
+	border: none;
+	font-weight: bolder;
+	background-color: lightgrey;
+	cursor: pointer;
+}
+
+.tournament-list-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.tournament_list_item {
+	padding: 20px 10px;
+	width: 80%;
+	height: 200px;
+	background-color: var(--red);
+	border-radius: 20px;
+	display: flex;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tournament_list_item_left {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	flex: 1;
+}
+
+.tournament_list_item_right {
+	text-align: right;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.tournament_list_item_right_top .tournament-date-text {
+	color: var(--maroon);
+}
+
+.tournament_list_item_right_bottom {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	font-weight: bold;
+	color: gold;
+}
+
+.tournament_list_item_right_bottom .matching-system-text {
+	font-size: small;
+}
+
+.tournament_list_item_right_bottom .time-control-format-text {
+	font-size: large;
+}
+
+.tournament_list_item_right_bottom .time-control-type-text {
+	font-size: x-large;
+}
+
+.create-tournament-submit {
+	width: 150px;
+	height: 40px;
+	background-color: var(--red);
+	border: none;
+	border-radius: 20px;
+	color: whitesmoke;
 }
 
 .form-container {
