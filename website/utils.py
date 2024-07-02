@@ -1,4 +1,7 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+
+def offset_time(time, offset_minutes):
+    return time - timedelta(minutes=offset_minutes)
 
 def get_time_control_format(seconds, increment):
     remaining_hours = int(seconds / 3600)
@@ -28,7 +31,7 @@ def get_time_elapsed(time):
     return cur_time - offset_aware_time
 
 def format_time_delta_hours(time_delta):
-    hours = int(time_delta.seconds / 3600) % 24
+    hours = 24 * time_delta.days + int(time_delta.seconds / 3600)
     minutes = int(time_delta.seconds / 60) % 60
     seconds = time_delta.seconds % 60
 

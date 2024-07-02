@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, session, jsonify
 from flask_login import login_required
 
 from website import db
@@ -7,6 +7,13 @@ from website.forms.tournaments import CreateTournamentForm
 from website import utils
 
 views = Blueprint("views", __name__)
+
+@views.route("/set_timezone_offset", methods=["POST"])
+def set_timezone_offset():
+    data = request.get_json()
+    session["timezoneOffset"] = data.get("timezoneOffset")
+
+    return jsonify({"message": "Timezone offset received"}), 200
 
 @views.app_context_processor
 def inject_members():
@@ -47,8 +54,9 @@ def leaderboard_tournaments_participated():
 @views.route("/tournaments")
 def tournaments():
     tournaments = Tournament.query.order_by(Tournament.tournament_date.desc()).all()
+    timezone_offset = session.get("timezoneOffset")
 
-    return render_template("tournaments.html", title="Tournaments", tournaments=tournaments, utils=utils)
+    return render_template("tournaments.html", title="Tournaments", tournaments=tournaments, timezone_offset=timezone_offset, utils=utils)
 
 @views.route("/tournaments/create", methods=["GET", "POST"])
 def tournaments_create():

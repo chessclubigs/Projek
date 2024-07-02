@@ -23,11 +23,12 @@
                         <h3>{{ tournament.title }}</h3>
                         <p>Time Elapsed: {{ utils.format_time_delta_hours(utils.get_time_elapsed(tournament.tournament_date)) }}</p>
                         <p>No. of Participants: {{ tournament.participants | length }}</p>
-                        <a href="#">View Leaderboard</a>
+                        <p>Running round {{ tournament.current_round }} out of {{ tournament.number_of_rounds }}</p>
+                        <a href="#">View Match</a>
                     </div>
                     <div class="tournament_list_item_right">
                         <div class="tournament_list_item_right_top">
-                            <span class="tournament-date-text">{{ tournament.tournament_date.strftime("%I:%M %p, %d/%m/%Y") }}</span>
+                            <span class="tournament-date-text">{{ (utils.offset_time(tournament.tournament_date, timezone_offset)).strftime("%I:%M %p, %d/%m/%Y") }}</span>
                         </div>
                         <div class="tournament_list_item_right_bottom">
                             <p class="matching-system-text">{{ tournament.matching_system }} <span><i class="fa-solid fa-user-group"></i></span></p>

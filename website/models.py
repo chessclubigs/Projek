@@ -53,7 +53,9 @@ class Tournament(db.Model):
     time_control_increment = db.Column(db.Integer, nullable=False)
     matching_system = db.Column(db.String(15), nullable=False) # "Swiss System", "Round-Robin", "Elimination", "Custom"
     number_of_rounds = db.Column(db.Integer, nullable=False)
+    current_round = db.Column(db.Integer, default=1)
     tournament_date = db.Column(db.DateTime, default=func.now())
+    tournament_end_date = db.Column(db.DateTime)
     
     matches = db.relationship("Match", foreign_keys="Match.tournament_id", backref="tournament", lazy=True)
     participants = db.relationship("Member", secondary="participants", back_populates="tournaments", lazy=True)
