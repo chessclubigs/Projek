@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import ValidationError, StringField, SubmitField, IntegerField, SelectField
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.validators import InputRequired, Length, NumberRange
+from math import ceil, log
 
 from website.models import Member
 
@@ -31,6 +32,26 @@ class CreateTournamentForm(FlaskForm):
     participants = QuerySelectMultipleField("Participants", query_factory=lambda: Member.query.filter_by(is_active=True).order_by(Member.full_name).all(), allow_blank=True, get_label="full_name", validators=[MinTwoParticipants()])
     submit = SubmitField("Create Tournament")
 
+    def validate_time_controls(self, field):
+        print(self.time_control_minutes.data == 0)
+        print(self.time_control_seconds.data == 0)
+        if self.time_control_minutes.data == 0 and self.time_control_seconds.data == 0:
+            raise ValidationError("Time Control Minutes or Time Control Seconds must be greater than zero.")
+
+    def validate_number_of_rounds(self, field):
+        number_of_participants = len(self.participants.data)
+        if self.matching_system.data == "Swiss System":
+            max_rounds = ceil(log(number_of_participants, 2))
+            if field.data > max_rounds:
+                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.matching_system.data} is {max_rounds}.")
+        if self.matching_system.data == "Round-Robin":
+            max_rounds = number_of_participants - 1
+            if field.data > max_rounds:
+                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.matching_system.data} is {max_rounds}.")
+        if self.matching_system.data == "Elimination":
+            max_rounds = ceil(log(number_of_participants, 2))
+            if field.data > max_rounds:
+                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.matching_system.data} is {max_rounds}.")
 
 class EditTournamentForm(FlaskForm):
     pass

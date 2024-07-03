@@ -145,6 +145,18 @@ aside :is(table, th, td) {
 	text-align: center;
 }
 
+.leaderboard-container tbody tr.gold {
+	background-color: gold;
+}
+
+.leaderboard-container tbody tr.silver {
+	background-color: silver;
+}
+
+.leaderboard-container tbody tr.chocolate {
+	background-color: chocolate;
+}
+
 .leaderboard-container :is(th, td) {
 	padding: 3px 5px;
 	white-space: nowrap;

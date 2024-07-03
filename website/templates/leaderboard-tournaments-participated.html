@@ -29,11 +29,11 @@
             </tbody>
         </table>
         <div class="pagination-container">
-            {% if page > 1 %}
+            {% if members.has_prev %}
                 <a href="{{url_for('views.leaderboard_tournaments_participated', page=page-1)}}"></a>
             {% endif %}
             <p>Page {{ page }}</p>
-            {% if page < members.pages %}
+            {% if members.has_next %}
                 <a href="{{url_for('views.leaderboard_tournaments_participated', page=page+1)}}"></a>
             {% endif %}
         </div>

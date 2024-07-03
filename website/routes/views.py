@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session, jsonify
 from flask_login import login_required
+from sqlalchemy import func, case
 
 from website import db
-from website.models import User, Member, Tournament, Participant
+from website.models import User, Member, Match, Tournament, Participant
 from website.forms.tournaments import CreateTournamentForm
 from website import utils
 
@@ -33,22 +34,26 @@ def leaderboard():
 @views.route("/leaderboard/top-rated")
 def leaderboard_top_rated():
     page = request.args.get("page", 1, type=int)
-    members = Member.query.order_by(Member.rating.desc(), Member.rating_reached_date.desc())\
-        .paginate(page=page, per_page=15)
+    members = Member.query.order_by(Member.rating.desc(), Member.full_name).paginate(page=page, per_page=15)
+
     return render_template("leaderboard-top-rated.html", title="Leaderboard", members=members, page=page)
 
 @views.route("/leaderboard/win-rate")
 def leaderboard_win_rate():
     page = request.args.get("page", 1, type=int)
-    members = Member.query.order_by(Member.rating.desc(), Member.rating_reached_date.desc())\
+    members = Member.query\
+        .outerjoin(Match, ((Match.white_player_id == Member.id) | (Match.black_player_id == Member.id)))\
+        .group_by(Member.id)\
+        .order_by(Member.win_rate.desc(), Member.draw_rate.desc(), Member.full_name)\
         .paginate(page=page, per_page=15)
+
     return render_template("leaderboard-win-rate.html", title="Leaderboard", members=members, page=page)
 
 @views.route("/leaderboard/tournaments-participated")
 def leaderboard_tournaments_participated():
     page = request.args.get("page", 1, type=int)
-    members = Member.query.order_by(Member.rating.desc(), Member.rating_reached_date.desc())\
-        .paginate(page=page, per_page=15)
+    members = Member.query.outerjoin(Member.tournaments).group_by(Member.id).order_by(func.count(Tournament.id).desc()).paginate(page=page, per_page=15)
+
     return render_template("leaderboard-tournaments-participated.html", title="Leaderboard", members=members, page=page)
 
 @views.route("/tournaments")
