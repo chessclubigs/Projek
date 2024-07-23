@@ -33,9 +33,9 @@
             </div>
             
             <div class="form-group">
-                <label for="matching-system">Matching System:</label>
-                {{ form.matching_system(class="form-control", id="matching-system") }}
-                {% for error in form.matching_system.errors %}
+                <label for="pairing-system">Pairing System:</label>
+                {{ form.pairing_system(class="form-control", id="pairing-system") }}
+                {% for error in form.pairing_system.errors %}
                     <span class="text-danger">{{ error }}</span>
                 {% endfor %}
             </div>

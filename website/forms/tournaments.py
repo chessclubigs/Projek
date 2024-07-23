@@ -22,7 +22,7 @@ class CreateTournamentForm(FlaskForm):
     time_control_minutes = IntegerField("Time Control Minutes", validators=[NumberRange(min=0, max=300)], render_kw={"placeholder": "mins"})
     time_control_seconds = IntegerField("Time Control Seconds", validators=[NumberRange(min=0, max=59)], render_kw={"placeholder": "secs"})
     time_control_increment = IntegerField("Time Control Increment", validators=[NumberRange(min=0, max=59)], render_kw={"placeholder": "inc"})
-    matching_system = SelectField("Matching System", choices=[
+    pairing_system = SelectField("Matching System", choices=[
         ("Swiss System", "Swiss System"),
         ("Round-Robin", "Round-Robin"),
         ("Elimination", "Elimination"),
@@ -33,8 +33,6 @@ class CreateTournamentForm(FlaskForm):
     submit = SubmitField("Create Tournament")
 
     def validate_time_controls(self, field):
-        print(self.time_control_minutes.data == 0)
-        print(self.time_control_seconds.data == 0)
         if self.time_control_minutes.data == 0 and self.time_control_seconds.data == 0:
             raise ValidationError("Time Control Minutes or Time Control Seconds must be greater than zero.")
 

@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "base_aside.html" %}
 
 {% block content %}
-    <div class="tournament-container">
+    <div class="tournaments-container">
         <div class="create-tournament-container">
             <a href="{{ url_for('views.tournaments_create') }}">
                 <button class="create-tournament-button">
@@ -16,22 +16,22 @@
 
         <h2>Archived</h2>
         <hr>
-        <div class="tournament-list-container">
+        <div class="tournaments-list-container">
             {% for tournament in tournaments %}
-                <div class="tournament_list_item">
-                    <div class="tournament_list_item_left">
+                <div class="tournaments_list_item">
+                    <div class="tournaments_list_item_left">
                         <h3>{{ tournament.title }}</h3>
                         <p>Time Elapsed: {{ utils.format_time_delta_hours(utils.get_time_elapsed(tournament.tournament_date)) }}</p>
                         <p>No. of Participants: {{ tournament.participants | length }}</p>
                         <p>Running round {{ tournament.current_round }} out of {{ tournament.number_of_rounds }}</p>
-                        <a href="#">View Match</a>
+                        <a href="{{ url_for('views.tournament', tournament_id=tournament.id) }}">View Standings</a>
                     </div>
-                    <div class="tournament_list_item_right">
-                        <div class="tournament_list_item_right_top">
+                    <div class="tournaments_list_item_right">
+                        <div class="tournaments_list_item_right_top">
                             <span class="tournament-date-text">{{ (utils.offset_time(tournament.tournament_date, timezone_offset)).strftime("%I:%M %p, %d/%m/%Y") }}</span>
                         </div>
-                        <div class="tournament_list_item_right_bottom">
-                            <p class="matching-system-text">{{ tournament.matching_system }} <span><i class="fa-solid fa-user-group"></i></span></p>
+                        <div class="tournaments_list_item_right_bottom">
+                            <p class="pairing-system-text">{{ tournament.pairing_system }} <span><i class="fa-solid fa-user-group"></i></span></p>
                             <p class="time-control-format-text">{{ utils.get_time_control_format(tournament.time_control_duration, tournament.time_control_increment) }}</p>
                             <p class="time-control-type-text">
                                 {% with type = utils.get_time_control_type(tournament.time_control_duration) %}

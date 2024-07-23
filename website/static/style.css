@@ -78,7 +78,7 @@ main {
 }
 
 main section {
-	width: 75%;
+	width: 100%;
 }
 
 main aside {
@@ -86,6 +86,10 @@ main aside {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+}
+
+main:has(aside) section {
+	width: 75%;
 }
 
 .side-card {
@@ -197,7 +201,7 @@ aside :is(table, th, td) {
 	text-align: center;
 }
 
-.tournament-container {
+.tournaments-container {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
@@ -213,13 +217,13 @@ aside :is(table, th, td) {
 	cursor: pointer;
 }
 
-.tournament-list-container {
+.tournaments-list-container {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
 }
 
-.tournament_list_item {
+.tournaments_list_item {
 	padding: 20px 10px;
 	width: 80%;
 	height: 200px;
@@ -229,25 +233,25 @@ aside :is(table, th, td) {
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
-.tournament_list_item_left {
+.tournaments_list_item_left {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	flex: 1;
 }
 
-.tournament_list_item_right {
+.tournaments_list_item_right {
 	text-align: right;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 }
 
-.tournament_list_item_right_top .tournament-date-text {
+.tournaments_list_item_right_top .tournament-date-text {
 	color: var(--maroon);
 }
 
-.tournament_list_item_right_bottom {
+.tournaments_list_item_right_bottom {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -255,15 +259,15 @@ aside :is(table, th, td) {
 	color: gold;
 }
 
-.tournament_list_item_right_bottom .matching-system-text {
+.tournaments_list_item_right_bottom .matching-system-text {
 	font-size: small;
 }
 
-.tournament_list_item_right_bottom .time-control-format-text {
+.tournaments_list_item_right_bottom .time-control-format-text {
 	font-size: large;
 }
 
-.tournament_list_item_right_bottom .time-control-type-text {
+.tournaments_list_item_right_bottom .time-control-type-text {
 	font-size: x-large;
 }
 
@@ -274,6 +278,24 @@ aside :is(table, th, td) {
 	border: none;
 	border-radius: 20px;
 	color: whitesmoke;
+}
+
+.tournament-standings {
+	display: flex;
+	justify-content: center;
+	background-color: gainsboro;
+	border-radius: 20px;
+}
+
+.tournament-standings table {
+	margin-block: 20px;
+	width: 90%;
+	background-color: gray;
+	/* border-collapse: ; */
+}
+
+.tournament-standings thead {
+	background-color: var(--red);
 }
 
 .form-container {

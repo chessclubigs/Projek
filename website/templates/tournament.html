@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="tournament-container">
+        <div class="tournament-standings">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4"></th>
+                        <th colspan="2">Score Based</th>
+                        <th colspan="2">Rating Based</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>Full Name</th>
+                        <th>Rating</th>
+                        <th>Score</th>
+                        <th>BHC1</th>
+                        <th>BH</th>
+                        <th>BHC1</th>
+                        <th>BH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for participant in tournament.participants %}
+                    {% if loop.index % 2 == 0 %}
+                        <tr style="background-color: white;">
+                    {% else %}
+                        <tr style="background-color: rgb(230, 230, 230);">
+                    {% endif %}
+                        <td>{{ loop.index }}</td>
+                        <td>{{ participant.full_name }}</td>
+                        <td>{{ participant.rating }}</td>
+                        <td>{{ participant.score }}</td>
+                        <td>{{ participant.bhc1 }}</td>
+                        <td>{{ participant.bh }}</td>
+                        <td>{{ participant.bhc1_rating }}</td>
+                        <td>{{ participant.bh_rating }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
