@@ -110,7 +110,7 @@ class Tournament(db.Model):
     title = db.Column(db.String(31), nullable=False)
     time_control_duration = db.Column(db.Integer, nullable=False)
     time_control_increment = db.Column(db.Integer, nullable=False)
-    matching_system = db.Column(db.String(15), nullable=False) # "Swiss System", "Round-Robin", "Elimination", "Custom"
+    pairing_system = db.Column(db.String(15), nullable=False) # "Swiss System", "Round-Robin", "Elimination", "Custom"
     number_of_rounds = db.Column(db.Integer, nullable=False)
     current_round = db.Column(db.Integer, default=1)
     tournament_date = db.Column(db.DateTime, default=func.now())
@@ -137,3 +137,43 @@ class Participant(db.Model):
     __tablename__ = "participants"
     tournament_id = db.Column(db.Integer, db.ForeignKey("tournaments.id"), primary_key=True)
     member_id = db.Column(db.Integer, db.ForeignKey("members.id"), primary_key=True)
+
+    @hybrid_property
+    def score(self):
+        return 0
+
+    @score.expression
+    def score(cls):
+        return 0
+
+    @hybrid_property
+    def bhc1_score(self):
+        return 0
+
+    @bhc1_score.expression
+    def bhc1_score(cls):
+        return 0
+
+    @hybrid_property
+    def bh_score(self):
+        return 0
+
+    @bh_score.expression
+    def bh_score(cls):
+        return 0
+
+    @hybrid_property
+    def bhc1_rating(self):
+        return 0
+
+    @bhc1_rating.expression
+    def bhc1_rating(cls):
+        return 0
+
+    @hybrid_property
+    def bh_rating(self):
+        return 0
+
+    @bh_rating.expression
+    def bh_rating(cls):
+        return 0
