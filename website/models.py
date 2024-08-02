@@ -110,7 +110,7 @@ class Tournament(db.Model):
     title = db.Column(db.String(31), nullable=False)
     time_control_duration = db.Column(db.Integer, nullable=False)
     time_control_increment = db.Column(db.Integer, nullable=False)
-    matching_system = db.Column(db.String(15), nullable=False) # "Swiss System", "Round-Robin", "Elimination", "Custom"
+    pairing_system = db.Column(db.String(15), nullable=False) # "Swiss System", "Round-Robin", "Elimination", "Custom"
     number_of_rounds = db.Column(db.Integer, nullable=False)
     current_round = db.Column(db.Integer, default=1)
     tournament_date = db.Column(db.DateTime, default=func.now())
@@ -137,3 +137,53 @@ class Participant(db.Model):
     __tablename__ = "participants"
     tournament_id = db.Column(db.Integer, db.ForeignKey("tournaments.id"), primary_key=True)
     member_id = db.Column(db.Integer, db.ForeignKey("members.id"), primary_key=True)
+
+    @hybrid_property
+    def score(self):
+        # Implement your logic to calculate score
+        return 0  # Replace with actual calculation
+
+    @score.expression
+    def score(cls):
+        # Implement SQL expression for score calculation
+        return 0  # Replace with actual SQL expression
+
+    @hybrid_property
+    def bhc1_score(self):
+        # Implement your logic to calculate BHC1
+        return 0  # Replace with actual calculation
+
+    @bhc1_score.expression
+    def bhc1_score(cls):
+        # Implement SQL expression for BHC1 calculation
+        return 0  # Replace with actual SQL expression
+
+    @hybrid_property
+    def bh_score(self):
+        # Implement your logic to calculate BH
+        return 0  # Replace with actual calculation
+
+    @bh_score.expression
+    def bh_score(cls):
+        # Implement SQL expression for BH calculation
+        return 0  # Replace with actual SQL expression
+
+    @hybrid_property
+    def bhc1_rating(self):
+        # Implement your logic to calculate BHC1 rating
+        return 0  # Replace with actual calculation
+
+    @bhc1_rating.expression
+    def bhc1_rating(cls):
+        # Implement SQL expression for BHC1 rating calculation
+        return 0  # Replace with actual SQL expression
+
+    @hybrid_property
+    def bh_rating(self):
+        # Implement your logic to calculate BH rating
+        return 0  # Replace with actual calculation
+
+    @bh_rating.expression
+    def bh_rating(cls):
+        # Implement SQL expression for BH rating calculation
+        return 0  # Replace with actual SQL expression

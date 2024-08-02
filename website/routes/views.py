@@ -91,6 +91,12 @@ def tournaments_create():
 
     return render_template("tournaments-create.html", title="Create Tournament", form=form)
 
+@views.route("/tournament/<int:tournament_id>")
+def tournament(tournament_id):
+    tournament = Tournament.query.get_or_404(tournament_id)
+
+    return render_template("tournament.html", title=tournament.title, tournament=tournament)
+
 @views.route("/<string:user_id>")
 @login_required
 def profile(user_id):
