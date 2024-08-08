@@ -22,7 +22,7 @@ class CreateTournamentForm(FlaskForm):
     time_control_minutes = IntegerField("Time Control Minutes", validators=[NumberRange(min=0, max=300)], render_kw={"placeholder": "mins"})
     time_control_seconds = IntegerField("Time Control Seconds", validators=[NumberRange(min=0, max=59)], render_kw={"placeholder": "secs"})
     time_control_increment = IntegerField("Time Control Increment", validators=[NumberRange(min=0, max=59)], render_kw={"placeholder": "inc"})
-    pairing_system = SelectField("Matching System", choices=[
+    pairing_system = SelectField("Pairing System", choices=[
         ("Swiss System", "Swiss System"),
         ("Round-Robin", "Round-Robin"),
         ("Elimination", "Elimination"),
@@ -38,18 +38,18 @@ class CreateTournamentForm(FlaskForm):
 
     def validate_number_of_rounds(self, field):
         number_of_participants = len(self.participants.data)
-        if self.matching_system.data == "Swiss System":
+        if self.pairing_system.data == "Swiss System":
             max_rounds = ceil(log(number_of_participants, 2))
             if field.data > max_rounds:
-                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.matching_system.data} is {max_rounds}.")
-        if self.matching_system.data == "Round-Robin":
+                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.pairing_system.data} is {max_rounds}.")
+        if self.pairing_system.data == "Round-Robin":
             max_rounds = number_of_participants - 1
             if field.data > max_rounds:
-                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.matching_system.data} is {max_rounds}.")
-        if self.matching_system.data == "Elimination":
+                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.pairing_system.data} is {max_rounds}.")
+        if self.pairing_system.data == "Elimination":
             max_rounds = ceil(log(number_of_participants, 2))
             if field.data > max_rounds:
-                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.matching_system.data} is {max_rounds}.")
+                raise ValidationError(f"Maximum rounds for {number_of_participants} participant(s) in {self.pairing_system.data} is {max_rounds}.")
 
 class EditTournamentForm(FlaskForm):
     pass
