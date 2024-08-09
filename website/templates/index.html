@@ -1,11 +1,29 @@
 {% extends "base_aside.html" %}
 
 {% block content %}
-    <div class="welcome-message">
-        <h1>Welcome to IGS Chess Club</h1>
-        <p style="font-style: italic;">This website is a place for club members to compete against each other with their respective local ratings.</p>
-        <p style="font-style: italic;">don't forget not to violate existing regulations</p>
-        <p style="font-style: italic;">Enjoy!</p>
-        <a href="https://www.instagram.com/chessclubigs?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="font-size: 20px;">𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦</a>
+    <div class="main-content-wrapper">
+        <aside>
+            <div class="welcome-message">
+                <h1 style="font-size: 25px; font-style: italic;">Welcome to IGS Chess Club</h1>
+                <h5 style="font-style: italic;">This website is a place for club members to compete against each other with their respective local ratings.</h5>
+                <h5 style="font-style: italic;">Don't forget not to violate existing regulations</h5>
+                <h5 style="font-style: italic;">Enjoy!</h5>
+                <a href="https://www.instagram.com/chessclubigs?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="font-size: 20px;">𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦</a>
+            </div>
+        </aside>
+
+        <div class="introduction-section">
+            <div class="intro-card">
+                <img src="{{ url_for('static', filename='../static/images/shiroko.jpg') }}" alt="Michael">
+                <h2>MichaelCh</h2>
+                <p>Our President!</p>
+            </div>
+            <div class="intro-card">
+                <img src="{{ url_for('static', filename='../static/images/kianachibi.jpg') }}" alt="Ezra">
+                <h2>Ezra Azka</h2>
+                <p>Our Vice-President!</p>
+            </div>
+        </div>
     </div>
+    
 {% endblock content %}
