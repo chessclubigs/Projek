@@ -4,26 +4,43 @@
     <div class="main-content-wrapper">
         <aside>
             <div class="welcome-message">
-                <h1 style="font-size: 25px; font-style: italic;">Welcome to IGS Chess Club</h1>
-                <h5 style="font-style: italic;">This website is a place for club members to compete against each other with their respective local ratings.</h5>
-                <h5 style="font-style: italic;">Don't forget not to violate existing regulations</h5>
-                <h5 style="font-style: italic;">Enjoy!</h5>
-                <a href="https://www.instagram.com/chessclubigs?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="font-size: 20px;">𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦</a>
+                <h1>Welcome to IGS Chess Club</h1>
+                <h5>This website is a place for club members to compete against each other with their respective local ratings.</h5>
+                <h5>Don't forget not to violate existing regulations.</h5>
+                <h5>Enjoy!</h5>
+                <a href="https://www.instagram.com/chessclubigs" class="instagram-link">Instagram</a>
             </div>
         </aside>
 
-        <div class="introduction-section">
-            <div class="intro-card">
-                <img src="{{ url_for('static', filename='../static/images/shiroko.jpg') }}" alt="Michael">
-                <h2>MichaelCh</h2>
-                <p>Our President!</p>
+        <section class="introduction-section">
+            <h2>Meet Our Team</h2>
+            <div class="introduction-grid">
+                <div class="intro-card">
+                    <img src="{{ url_for('static', filename='images/shiroko.jpg') }}" alt="Michael">
+                    <h3>MichaelCh</h3>
+                    <p>Our President!</p>
+                </div>
+                <div class="intro-card">
+                    <img src="{{ url_for('static', filename='images/kianachibi.jpg') }}" alt="Ezra">
+                    <h3>Ezra Azka</h3>
+                    <p>Our Vice-President!</p>
+                </div>
+                <div class="intro-card">
+                    <img src="{{ url_for('static', filename='images/secretary.jpg') }}" alt="Secretary">
+                    <h3>Secretary</h3>
+                    <p>Our Secretary!</p>
+                </div>
+                <div class="intro-card">
+                    <img src="{{ url_for('static', filename='images/treasurer.jpg') }}" alt="Treasurer">
+                    <h3>Treasurer</h3>
+                    <p>Our Treasurer!</p>
+                </div>
+                <div class="intro-card">
+                    <img src="{{ url_for('static', filename='images/publication.jpg') }}" alt="Publication">
+                    <h3>Publication</h3>
+                    <p>Our Publication Manager!</p>
+                </div>
             </div>
-            <div class="intro-card">
-                <img src="{{ url_for('static', filename='../static/images/kianachibi.jpg') }}" alt="Ezra">
-                <h2>Ezra Azka</h2>
-                <p>Our Vice-President!</p>
-            </div>
-        </div>
+        </section>
     </div>
-    
 {% endblock content %}
