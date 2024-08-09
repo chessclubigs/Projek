@@ -140,50 +140,40 @@ class Participant(db.Model):
 
     @hybrid_property
     def score(self):
-        # Implement your logic to calculate score
-        return 0  # Replace with actual calculation
+        return 0
 
     @score.expression
     def score(cls):
-        # Implement SQL expression for score calculation
-        return 0  # Replace with actual SQL expression
+        return 0
 
     @hybrid_property
     def bhc1_score(self):
-        # Implement your logic to calculate BHC1
-        return 0  # Replace with actual calculation
+        return 0
 
     @bhc1_score.expression
     def bhc1_score(cls):
-        # Implement SQL expression for BHC1 calculation
-        return 0  # Replace with actual SQL expression
+        return 0
 
     @hybrid_property
     def bh_score(self):
-        # Implement your logic to calculate BH
-        return 0  # Replace with actual calculation
+        return 0
 
     @bh_score.expression
     def bh_score(cls):
-        # Implement SQL expression for BH calculation
-        return 0  # Replace with actual SQL expression
+        return 0
 
     @hybrid_property
     def bhc1_rating(self):
-        # Implement your logic to calculate BHC1 rating
-        return 0  # Replace with actual calculation
+        return 0
 
     @bhc1_rating.expression
     def bhc1_rating(cls):
-        # Implement SQL expression for BHC1 rating calculation
-        return 0  # Replace with actual SQL expression
+        return 0
 
     @hybrid_property
     def bh_rating(self):
-        # Implement your logic to calculate BH rating
-        return 0  # Replace with actual calculation
+        return 0
 
     @bh_rating.expression
     def bh_rating(cls):
-        # Implement SQL expression for BH rating calculation
-        return 0  # Replace with actual SQL expression
+        return 0

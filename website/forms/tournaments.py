@@ -33,8 +33,6 @@ class CreateTournamentForm(FlaskForm):
     submit = SubmitField("Create Tournament")
 
     def validate_time_controls(self, field):
-        print(self.time_control_minutes.data == 0)
-        print(self.time_control_seconds.data == 0)
         if self.time_control_minutes.data == 0 and self.time_control_seconds.data == 0:
             raise ValidationError("Time Control Minutes or Time Control Seconds must be greater than zero.")
 
