@@ -1,45 +1,66 @@
 {% extends "base_aside.html" %}
 
 {% block content %}
-    <div class="main-content-wrapper">
-        <aside>
-            <div class="welcome-message">
-                <h1>Welcome to IGS Chess Club</h1>
-                <h5>This website is a place for club members to compete against each other with their respective local ratings.</h5>
-                <h5>Don't forget not to violate existing regulations.</h5>
-                <h5>Enjoy!</h5>
-                <a href="https://www.instagram.com/chessclubigs" class="instagram-link">Instagram</a>
-            </div>
-        </aside>
+    <section class="hero-section">
+        <div class="overlay">
+            <aside style="align-items: center; margin: 0px auto;">
+                <div class="welcome-message">
+                    <h1 style="color: black;">Welcome to IGS Chess Club</h1>
+                    <h5 style="color: black;">This website is a place for club members to compete against each other with their respective local ratings.</h5>
+                    <h5 style="color: black;">Don't forget not to violate existing regulations.</h5>
+                    <h5 style="color: black;">Enjoy!</h5>
+                    <a href="https://www.instagram.com/chessclubigs" class="instagram-link" target="_blank">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                </div>
+            </aside>
+            <!-- <h1>Welcome to IGS Chess Club</h1> -->
+            <p>Compete, learn, and grow with fellow chess enthusiasts.</p>
+            <a href="#team" class="cta-button">Meet Our Team</a>
+        </div>
+    </section>
 
-        <section class="introduction-section">
+    <div class="main-content-wrapper">
+        <section class="introduction-section" id="team">
             <h2>Meet Our Team</h2>
             <div class="introduction-grid">
                 <div class="intro-card">
-                    <img src="{{ url_for('static', filename='images/shiroko.jpg') }}" alt="Michael">
+                    <img src="{{ url_for('static', filename='images/mikel.jpg') }}" alt="Michael">
                     <h3>MichaelCh</h3>
                     <p>Our President!</p>
+                    <a href="https://www.instagram.com/michaelch4n/" target="_blank">insta</a>
                 </div>
                 <div class="intro-card">
-                    <img src="{{ url_for('static', filename='images/kianachibi.jpg') }}" alt="Ezra">
+                    <img src="{{ url_for('static', filename='images/ezra.jpg') }}" alt="Ezra">
                     <h3>Ezra Azka</h3>
                     <p>Our Vice-President!</p>
+                    <a href="#" target="_blank">insta</a>
                 </div>
                 <div class="intro-card">
-                    <img src="{{ url_for('static', filename='images/secretary.jpg') }}" alt="Secretary">
+                    <img src="{{ url_for('static', filename='images/fadel.jpg') }}" alt="Secretary">
                     <h3>Secretary</h3>
                     <p>Our Secretary!</p>
+                    <a href="#" target="_blank">insta</a>
                 </div>
                 <div class="intro-card">
                     <img src="{{ url_for('static', filename='images/treasurer.jpg') }}" alt="Treasurer">
                     <h3>Treasurer</h3>
                     <p>Our Treasurer!</p>
+                    <a href="#" target="_blank">insta</a>
                 </div>
                 <div class="intro-card">
                     <img src="{{ url_for('static', filename='images/publication.jpg') }}" alt="Publication">
                     <h3>Publication</h3>
                     <p>Our Publication Manager!</p>
+                    <a href="#" target="_blank">insta</a>
                 </div>
+            </div>
+        </section>
+
+        <section class="puzzle-section">
+            <h2>Chess Puzzle of the Day</h2>
+            <div id="puzzle-container">
+                <img src="{{ url_for('static', filename='images/puzzle.png') }}" alt="Chess Puzzle">
             </div>
         </section>
     </div>
