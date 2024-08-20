@@ -23,15 +23,20 @@
 }
 
 body {
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
+    background:linear-gradient(90deg,red,purple,green) left/400% 100%;
     color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.7;
+    animation:f 2s infinite alternate linear;
 }
 
-/* Header */
+@keyframes f {
+    100% {background-position:right}
+}
+
 header {
     background-color: var(--primary-color);
     padding: 20px;
